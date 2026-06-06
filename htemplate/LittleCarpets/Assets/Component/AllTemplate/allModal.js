@@ -1,0 +1,189 @@
+import '../Harmony-Menu/Harmony-menu.js';
+
+$(document).ready(function () {
+
+  var Accordion = function (el, multiple) {
+    this.el = el;
+    this.multiple = multiple || false;
+
+    var dropdownlink = this.el.find('.dropdownlink');
+
+    var firstItem = this.el.find('.dropdownlink').first();
+    firstItem.next('.submenuItems').slideDown().parent().addClass('open');
+
+    dropdownlink.on(
+      'click',
+      { el: this.el, multiple: this.multiple },
+      this.dropdown
+    );
+  };
+
+  Accordion.prototype.dropdown = function (e) {
+    var $el = e.data.el,
+      $this = $(this),
+      $next = $this.next('.submenuItems');
+
+    if (!e.data.multiple && !$this.parent().hasClass('open')) {
+      $el.find('.submenuItems').slideUp().parent().removeClass('open');
+    }
+
+    $next.stop(true, true).slideToggle();
+    $this.parent().toggleClass('open');
+  };
+
+  $('.accordion-menu').each(function () {
+    new Accordion($(this), false);
+  });
+
+  // /*accordion-menu*/
+
+  // /*showModal*/
+
+  $('.show-btn').on('click', function () {
+    var dataModalValue = $(this).data('modal');
+
+    $('.hmodal').removeClass('showModal');
+
+    $('.hmodal[data-modal="' + dataModalValue + '"]').addClass('showModal');
+
+    if (
+      $(this).attr('data-overflow-hidden') === 'true' &&
+      $('.blurBackstage').length === 0
+    ) {
+      $(document.body).css('overflow', 'hidden');
+    }
+
+    if (
+      $(this).attr('data-Backstage') != 'false' &&
+      $('.blurBackstage').length === 0
+    ) {
+      $(document.body).append('<div class="blurBackstage"></div>');
+    }
+  });
+
+  $(document).on('click', '.blurBackstage', function () {
+    closeModal();
+  });
+
+  $('.btnClose').on('click', function () {
+    closeModal();
+  });
+
+  function closeModal() {
+    $('.hmodal').removeClass('showModal');
+    $('.blurBackstage').remove();
+    $(document.body).css('overflow', '');
+    // گرفتن ویدئو
+  }
+
+  // /*showModal*/
+
+  // /*tab_end*/
+  $('body').on('click', 'a[data-toggle="tab"]', function (key, el) {
+    // Set active tab nav
+    $(this)
+      .closest('.nav-tabs')
+      .find('a[data-toggle="tab"]')
+      .removeClass('active');
+    $(this).addClass('active');
+    let elementId = $(this).attr('data-target');
+    $(elementId)
+      .closest('.tab-content')
+      .find('.tab-content__pane')
+      .removeClass('show');
+    $(elementId).addClass('show');
+  });
+
+  // /*tab_end*/
+
+  /*reedmore*/
+  $('.introduction-wrapper').each(function () {
+    const wrapper = $(this);
+    const myDiv = wrapper.find('.introduction');
+    const button = wrapper.find('.introduction-span');
+    const viewLessBtn = wrapper.find('.view-less');
+    const svgIcon = wrapper.find('.introduction-shop-svg');
+
+    const defaultHeight = myDiv.attr('data-height');
+
+    // ست کردن ارتفاع اولیه
+    myDiv.css({
+      height: defaultHeight,
+      overflow: 'hidden',
+      boxSizing: 'border-box',
+    });
+
+    button.on('click', function () {
+      // ابتدا ارتفاع به auto تنظیم می‌شود تا مقدار واقعی را بگیریم
+      myDiv.css('height', 'auto');
+
+      // گرفتن ارتفاع واقعی در حالت auto
+      const fullHeight = myDiv.outerHeight();
+
+      // بازگرداندن به ارتفاع اولیه برای شروع انیمیشن
+      myDiv.css('height', defaultHeight);
+
+      // اجرای انیمیشن تا ارتفاع واقعی
+      myDiv.stop().animate({ height: fullHeight }, 400, function () {
+        // بعد از انیمیشن، ارتفاع را به auto برمی‌گردانیم تا در صورت تغییر محتوای داخلی، خودش تنظیم شود
+        myDiv.css('height', 'auto');
+      });
+
+      button.addClass('add-class-introduction-span');
+      viewLessBtn.addClass('add-class-view-less');
+      svgIcon.addClass('add-class-introduction-shop-svg');
+    });
+
+    viewLessBtn.on('click', function () {
+      // بستن انیمیشنی به ارتفاع اولیه
+      const currentHeight = myDiv.outerHeight();
+      myDiv.css('height', currentHeight); // تنظیم ارتفاع فعلی برای شروع انیمیشن
+      myDiv.stop().animate({ height: defaultHeight }, 400);
+
+      button.removeClass('add-class-introduction-span');
+      viewLessBtn.removeClass('add-class-view-less');
+      svgIcon.removeClass('add-class-introduction-shop-svg');
+    });
+  });
+
+  /*reedmore*/
+
+  $('.h_animation .use_animation').css('opacity', 0);
+
+  $('.h_animation .use_animation').each(function (index) {
+    $(this)
+      .delay(100 * index)
+      .animate({ opacity: 1 }, 500);
+  });
+
+  
+  // share
+  document.querySelectorAll('.shareButton').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const url = button.dataset.url; // لینک مخصوص هر مطلب
+      const message = button.nextElementSibling; // div پیام مخصوص همان دکمه
+
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: document.title,
+            url: url,
+          });
+        } catch (err) {
+          console.error('اشتراک لغو شد یا خطا رخ داد:', err);
+        }
+      } else {
+        try {
+          await navigator.clipboard.writeText(url);
+          message.classList.remove('hidden');
+          setTimeout(() => message.classList.add('hidden'), 2000);
+        } catch (err) {
+          alert('کپی آدرس انجام نشد.');
+        }
+      }
+    });
+  });
+
+
+  
+});

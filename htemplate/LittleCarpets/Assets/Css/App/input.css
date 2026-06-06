@@ -1,0 +1,112 @@
+@import url("../../Css/App/harmony_icon.css");
+@import url("../../Component/Harmony-Menu/Harmony-menu.css");
+@import url("../../Component/AllTemplate/allModal.css");
+@import "tailwindcss";
+
+@font-face {
+  font-family: "iranyekan";
+  font-weight: normal;
+  font-display: swap;
+  src: url("../../fonts/iranyekan/ttf/iranyekanwebregular.ttf")
+      format("truetype"),
+    url("../../fonts/iranyekan/ttf/iranyekanwebbold.ttf") format("woff");
+}
+
+@font-face {
+  font-family: "iranyekan";
+  font-weight: bold;
+  font-display: swap;
+  src: url("../../fonts/iranyekan/woff/iranyekanwebregular.woff")
+      format("truetype"),
+    url("../../fonts/iranyekan/woff/iranyekanwebbold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "mypinar";
+  font-weight: normal;
+  font-display: swap;
+  src: url("../../fonts/pinar/Pinar-Regular.ttf") format("truetype"),
+    url("../../fonts/pinar/Pinar-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "mypinar";
+  font-weight: bold;
+  font-display: swap;
+  src: url("../../fonts/pinar/Pinar-Bold.ttf") format("truetype"),
+    url("../../fonts/pinar/Pinar-Bold.woff2") format("woff");
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "iranyekan", "mypinar", sans-serif;
+  direction: rtl;
+  background-color: var(--theme-Tertiary);
+}
+
+*::-webkit-scrollbar {
+  width: 20px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-theme-primary);
+  border-radius: 20px;
+  border: 5px solid #fff;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 1rem;
+}
+
+@theme {
+  --font-pinar: "mypinar", sans-serif;
+  --color-theme-primary: var(--theme-primary);
+  --color-theme-light-primary: var(--theme-light-primary);
+  --color-theme-secondary: var(--theme-secondary);
+  --color-theme-Tertiary: var(--theme-Tertiary);
+  --shadow-theme-xl:0 0 20px -3px #646262;
+}
+
+:root {
+  --theme-primary: #801216;
+  --theme-light-primary: rgb(157, 48, 48);
+  --theme-secondary: #f7ecd2;
+  --theme-Tertiary: #fcfcfc;
+}
+
+@utility container {
+  padding-inline: 0.5rem;
+  margin-inline: auto;
+}
+
+@layer base {
+  .input {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    width: 100%;
+  }
+
+  .input:focus {
+    outline: 0;
+  }
+  .button {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .Form-Fields {
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 25px;
+    width: 100%;
+    font-size: 14px;
+  }
+  .Form-Fields:focus {
+    outline: 1px solid var(--theme-Quaternary);
+  }
+}
