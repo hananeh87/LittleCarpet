@@ -7,34 +7,34 @@
   font-family: "iranyekan";
   font-weight: normal;
   font-display: swap;
-  src: url("../../fonts/iranyekan/ttf/iranyekanwebregular.ttf")
+  src: url("../../Fonts/iranyekan/ttf/iranyekanwebregular.ttf")
       format("truetype"),
-    url("../../fonts/iranyekan/ttf/iranyekanwebbold.ttf") format("woff");
+    url("../../Fonts/iranyekan/ttf/iranyekanwebbold.ttf") format("woff");
 }
 
 @font-face {
   font-family: "iranyekan";
   font-weight: bold;
   font-display: swap;
-  src: url("../../fonts/iranyekan/woff/iranyekanwebregular.woff")
+  src: url("../../Fonts/iranyekan/woff/iranyekanwebregular.woff")
       format("truetype"),
-    url("../../fonts/iranyekan/woff/iranyekanwebbold.woff") format("woff");
+    url("../../Fonts/iranyekan/woff/iranyekanwebbold.woff") format("woff");
 }
 
 @font-face {
   font-family: "mypinar";
   font-weight: normal;
   font-display: swap;
-  src: url("../../fonts/pinar/Pinar-Regular.ttf") format("truetype"),
-    url("../../fonts/pinar/Pinar-Regular.woff2") format("woff2");
+  src: url("../../Fonts/pinar/Pinar-Regular.ttf") format("truetype"),
+    url("../../Fonts/pinar/Pinar-Regular.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "mypinar";
   font-weight: bold;
   font-display: swap;
-  src: url("../../fonts/pinar/Pinar-Bold.ttf") format("truetype"),
-    url("../../fonts/pinar/Pinar-Bold.woff2") format("woff");
+  src: url("../../Fonts/pinar/Pinar-Bold.ttf") format("truetype"),
+    url("../../Fonts/pinar/Pinar-Bold.woff2") format("woff");
 }
 
 html {
